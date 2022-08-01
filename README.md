@@ -27,12 +27,11 @@ na modelagem de suas entidades, no domínio de uma academia de ginástica.</p>
 <h2>✨ Novas Funcionalidades</h2>
 
 <p>Seguindo as regras de negócio, neste repositório, foram implementados mais alguns endpoints: </p>
-<ul>
-	<li>GET `http://localhost:8081/alunos/{id}` (para buscar um aluno em específico)</li>
-	<li>PUT `http://localhost:8081/alunos/{id}` (para atualizar um aluno em específico)</li>
-	<li>DELETE `http://localhost:8081/alunos/{id}` (para deletar um aluno em específico)</li>
-	<li>GET `http://localhost:8081/avaliacoes/{id}` (para busca uma avaliação)</li>
-	<li>PUT `http://localhost:8081/avaliacoes/{id}` (para atualizar uma avaliação)</li>
-	<li>DELETE `http://localhost:8081/avaliacoes/{id}` (para deletar uma avaliação)</li>
-	<li>DELETE `http://localhost:8081/matriculas/{id}` (para deletar uma matrícula)</li>
-</ul>
+
+* GET `http://localhost:8081/alunos/{id}` (para buscar um aluno em específico)
+* PUT `http://localhost:8081/alunos/{id}` (para atualizar um aluno em específico)
+* DELETE `http://localhost:8081/alunos/{id}` (para deletar um aluno em específico)
+* GET `http://localhost:8081/avaliacoes/{id}` (para busca uma avaliação)
+* PUT `http://localhost:8081/avaliacoes/{id}` (para atualizar uma avaliação)
+* DELETE `http://localhost:8081/avaliacoes/{id}` (para deletar uma avaliação)
+* DELETE `http://localhost:8081/matriculas/{id}` (para deletar uma matrícula)
