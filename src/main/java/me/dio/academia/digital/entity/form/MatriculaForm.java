@@ -12,7 +12,7 @@ import javax.validation.constraints.Positive;
 @AllArgsConstructor
 public class MatriculaForm {
 
-  @NotNull(message = "Preencha o campo corretamente.")
-  @Positive(message = "O Id do aluno precisa ser positivo.")
-  private Long alunoId;
+	@NotNull(message = "Preencha o campo corretamente.")
+	@Positive(message = "O Id do aluno precisa ser positivo.")
+	private Long alunoId;
 }

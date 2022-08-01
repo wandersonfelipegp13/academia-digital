@@ -14,13 +14,13 @@ import java.time.LocalDateTime;
 @Table(name = "tb_matriculas")
 public class Matricula {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "aluno_id")
-  private Aluno aluno;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "aluno_id")
+	private Aluno aluno;
 
-  private LocalDateTime dataDaMatricula = LocalDateTime.now();
+	private LocalDateTime dataDaMatricula = LocalDateTime.now();
 }

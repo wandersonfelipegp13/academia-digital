@@ -12,57 +12,75 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AlunoServiceImpl implements IAlunoService {
 
-  @Autowired
-  private AlunoRepository repository;
+	@Autowired
+	private AlunoRepository repository;
 
-  @Override
-  public Aluno create(AlunoForm form) {
-    Aluno aluno = new Aluno();
-    aluno.setNome(form.getNome());
-    aluno.setCpf(form.getCpf());
-    aluno.setBairro(form.getBairro());
-    aluno.setDataDeNascimento(form.getDataDeNascimento());
+	@Override
+	public Aluno create(AlunoForm form) {
+		Aluno aluno = new Aluno();
+		aluno.setNome(form.getNome());
+		aluno.setCpf(form.getCpf());
+		aluno.setBairro(form.getBairro());
+		aluno.setDataDeNascimento(form.getDataDeNascimento());
 
-    return repository.save(aluno);
-  }
+		return repository.save(aluno);
+	}
 
-  @Override
-  public Aluno get(Long id) {
-    return null;
-  }
+	@Override
+	public Aluno get(Long id) {
+		return repository.getById(id);
+	}
 
-  @Override
-  public List<Aluno> getAll(String dataDeNascimento) {
+	@Override
+	public List<Aluno> getAll(String dataDeNascimento) {
 
-    if(dataDeNascimento == null) {
-      return repository.findAll();
-    } else {
-      LocalDate localDate = LocalDate.parse(dataDeNascimento, JavaTimeUtils.LOCAL_DATE_FORMATTER);
-      return repository.findByDataDeNascimento(localDate);
-    }
+		if (dataDeNascimento == null) {
+			return repository.findAll();
+		} else {
+			LocalDate localDate = LocalDate.parse(dataDeNascimento, JavaTimeUtils.LOCAL_DATE_FORMATTER);
+			return repository.findByDataDeNascimento(localDate);
+		}
 
-  }
+	}
 
-  @Override
-  public Aluno update(Long id, AlunoUpdateForm formUpdate) {
-    return null;
-  }
+	@Override
+	public Aluno update(Long id, AlunoUpdateForm formUpdate) {
+		
+		Optional<Aluno> aluno = repository.findById(id);
+		
+		if (!aluno.isPresent())
+			return null;
+		
+		aluno.get().setId(id);
+		aluno.get().setNome(formUpdate.getNome());
+		aluno.get().setBairro(formUpdate.getBairro());
+		aluno.get().setDataDeNascimento(formUpdate.getDataDeNascimento());
+		
+		return repository.save(aluno.get());
+	}
 
-  @Override
-  public void delete(Long id) {
-  }
+	@Override
+	public void delete(Long id) {
+		Optional<Aluno> aluno = repository.findById(id);
+		
+		if (!aluno.isPresent())
+			return;
+		
+		repository.deleteById(id);
+	}
 
-  @Override
-  public List<AvaliacaoFisica> getAllAvaliacaoFisicaId(Long id) {
+	@Override
+	public List<AvaliacaoFisica> getAllAvaliacaoFisicaId(Long id) {
 
-    Aluno aluno = repository.findById(id).get();
+		Aluno aluno = repository.findById(id).get();
 
-    return aluno.getAvaliacoes();
+		return aluno.getAvaliacoes();
 
-  }
+	}
 
 }
